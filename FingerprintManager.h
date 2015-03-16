@@ -14,13 +14,13 @@ typedef unsigned char    byte;
 #include <list>
 #include <limits>
 #include <fstream>
-
+#include <FingerprintProperties.h>
 using namespace std;
 
 class FingerprintManager 
 {
 private:
-        FingerprintProperties fingerprintProperties     = FingerprintProperties.getInstance();
+        FingerprintProperties* fingerprintProperties    = FingerprintProperties.getInstance();
         int sampleSizePerFrame                          = fingerprintProperties.getSampleSizePerFrame();
         int overlapFactor                               = fingerprintProperties.getOverlapFactor();
         int numRobustPointsPerFrame                     = fingerprintProperties.getNumRobustPointsPerFrame();
@@ -55,7 +55,7 @@ public:
     void saveFingerprintAsFile(byte fingerprint[], string filename);
 
     // robustLists[x]=y1,y2,y3,...
-    vector<list<int> > getRobustPointList(double spectrogramData[][]);
+    vector<list<int> > getRobustPointList(vector<vector<double > >spectrogramData);
 
     /**
      * Number of frames in a fingerprint
@@ -67,7 +67,7 @@ public:
      * @param fingerprint	fingerprint bytes
      * @return number of frames of the fingerprint
      */
-    static int getNumFrames(byte[] fingerprint);
+    static int getNumFrames(vector<byte> fingerprint);
     
     FingerprintManager(const FingerprintManager& orig);
     virtual ~FingerprintManager();

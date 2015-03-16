@@ -6,7 +6,7 @@
  */
 
 #include "FingerprintManager.h"
-#include <list>
+
 
 FingerprintManager::FingerprintManager() {
 }
@@ -34,7 +34,7 @@ byte* FingerprintManager::extractFingerprint(Wave wave)
 
     // get spectrogram's data
     Spectrogram spectrogram = resampledWave.getSpectrogram(sampleSizePerFrame, overlapFactor);
-    double spectorgramData[][] = spectrogram.getNormalizedSpectrogramData();
+    vector<vector<double> > spectorgramData = spectrogram.getNormalizedSpectrogramData();
 
     vector<list<int> > pointsLists = getRobustPointList(spectorgramData);
     int numFrames = pointsLists.size();
@@ -72,20 +72,20 @@ byte* FingerprintManager::extractFingerprint(Wave wave)
             {
                 // first 2 bytes is x
                 int x = i;
-                byteList.add((byte) (x >> 8));
-                byteList.add((byte) x);
+                byteList.push_back((byte) (x >> 8));
+                byteList.push_back(((byte) x));
 
                 // next 2 bytes is y
                 int y = coordinates[i][j];
-                byteList.add((byte) (y >> 8));
-                byteList.add((byte) y);
+                byteList.push_back((byte) (y >> 8));
+                byteList.push_back((byte) y);
 
                 // next 4 bytes is intensity
                 int intensity = (int) (spectorgramData[x][y] * MAX_VALUE); // spectorgramData is ranged from 0~1
-                byteList.add((byte) (intensity >> 24));
-                byteList.add((byte) (intensity >> 16));
-                byteList.add((byte) (intensity >> 8));
-                byteList.add((byte) intensity);
+                byteList.push_back((byte) (intensity >> 24));
+                byteList.push_back((byte) (intensity >> 16));
+                byteList.push_back((byte) (intensity >> 8));
+                byteList.push_back((byte) intensity);
             }
         }
     }
@@ -165,12 +165,16 @@ void FingerprintManager::saveFingerprintAsFile(byte fingerprint[], string filena
 }
 
 // robustLists[x]=y1,y2,y3,...
-vector<list<int> > FingerprintManager::getRobustPointList(double spectrogramData[][]){
+vector<list<int> > FingerprintManager::getRobustPointList(vector<vector<double > >spectrogramData){
 
         int numX = spectrogramData.size();
         int numY = spectrogramData[0].size();
 
-        double** allBanksIntensities    = new double[numX][numY];		
+        vector<vector<double> > allBanksIntensities    = vector<vector<double> > (numX);
+        for (int i = 0; i < numX; i++) 
+        {
+            allBanksIntensities[i] = vector<double>(numY);  
+        }
         int bandwidthPerBank            = numY/numFilterBanks;
 
         for (int b=0; b<numFilterBanks; b++)
@@ -196,7 +200,7 @@ vector<list<int> > FingerprintManager::getRobustPointList(double spectrogramData
             }
         }
 
-        list<int*> robustPointList=list<int*>();
+        list<vector<int> > robustPointList=list<vector<int> >();
 
         // find robust points
         for (int i=0; i< allBanksIntensities.size(); i++)
@@ -205,8 +209,9 @@ vector<list<int> > FingerprintManager::getRobustPointList(double spectrogramData
                 {	
                         if (allBanksIntensities[i][j]>0)
                         {
-
-                                int* point=new int[]{i,j};
+                                vector<int> point=vector<int>(2);
+                                point[0] = i;
+                                point[1] = j;
                                 //System.out.println(i+","+frequency);
                                 robustPointList.push_back(point);
                         }
@@ -214,16 +219,19 @@ vector<list<int> > FingerprintManager::getRobustPointList(double spectrogramData
         }
         // end find robust points
 
-        List<Integer>[] robustLists=new LinkedList[spectrogramData.length];
-        for (int i=0; i<robustLists.length; i++){
-                robustLists[i]=new LinkedList<Integer>();
+        vector<list<int> > robustLists=vector<list<int> >[spectrogramData.size()];
+        for (int i=0; i<robustLists.size(); i++)
+        {
+            robustLists[i]=list<int>();
         }
 
         // robustLists[x]=y1,y2,y3,...
-        Iterator<int[]> robustPointListIterator=robustPointList.iterator();
-        while (robustPointListIterator.hasNext()){
-                int[] coor=robustPointListIterator.next();
+        vector<list<int> > robustPointListIterator = robustPointList.iterator();
+        while (robustPointListIterator != robustPointList.end())
+        {
+                vector<int> coor = *(++robustPointListIterator);
                 robustLists[coor[0]].add(coor[1]);
+               
         }
 
         // return the list per frame
@@ -240,14 +248,13 @@ vector<list<int> > FingerprintManager::getRobustPointList(double spectrogramData
  * @param fingerprint	fingerprint bytes
  * @return number of frames of the fingerprint
  */
-public static int getNumFrames(byte[] fingerprint){
+int FingerprintManager::getNumFrames(vector<byte> fingerprint){
 
-        if (fingerprint.length<8){
+        if (fingerprint.size()<8){
                 return 0;
         }
-
         // get the last x-coordinate (length-8&length-7)bytes from fingerprint
-        int numFrames=((int)(fingerprint[fingerprint.length-8]&0xff)<<8 | (int)(fingerprint[fingerprint.length-7]&0xff))+1;
+        int numFrames=((int)(fingerprint[fingerprint.size() - 8] & 0xff ) << 8 | (int)(fingerprint[fingerprint.size() - 7]&0xff )) + 1 ;
         return numFrames;
 }
 FingerprintManager::FingerprintManager(const FingerprintManager& orig) {
