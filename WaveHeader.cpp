@@ -49,62 +49,67 @@ WaveHeader::WaveHeader(iostream inputStream)
 bool WaveHeader::loadHeader(iostream inputStream)
 {
     unsigned char headerBuffer[] = char[HEADER_BYTE_LENGTH];
-    int pointer                  = 0;
+    try{
+        
+        int pointer                  = 0;
 
-    inputStream.read(headerBuffer, HEADER_BYTE_LENGTH);
-    unsigned char temp[];
-    temp = 
+        inputStream.read(headerBuffer, HEADER_BYTE_LENGTH);
+        unsigned char temp[];
+        temp = 
+        {
+            headerBuffer[pointer++],
+            headerBuffer[pointer++],
+            headerBuffer[pointer++],
+            headerBuffer[pointer++]
+        };
+        chunkId     = string(temp);
+        chunkSize   = (long) (headerBuffer[pointer++] & 0xff)
+                | (long) (headerBuffer[pointer++] & 0xff) << 8
+                | (long) (headerBuffer[pointer++] & 0xff) << 16
+                | (long) (headerBuffer[pointer++] & 0xff << 24);
+
+        temp = {headerBuffer[pointer++],
+            headerBuffer[pointer++], headerBuffer[pointer++],
+            headerBuffer[pointer++]};
+        format = string(temp);
+
+        temp = {headerBuffer[pointer++],
+            headerBuffer[pointer++],
+            headerBuffer[pointer++],
+            headerBuffer[pointer++]};
+
+        subChunk1Id = string(temp);
+
+        subChunk1Size = (long) (headerBuffer[pointer++] & 0xff)
+                        | (long) (headerBuffer[pointer++] & 0xff) << 8
+                        | (long) (headerBuffer[pointer++] & 0xff) << 16
+                        | (long) (headerBuffer[pointer++] & 0xff) << 24;
+        audioFormat = (int) ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
+        channels = (int) ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
+        sampleRate = (long) (headerBuffer[pointer++] & 0xff)
+                        | (long) (headerBuffer[pointer++] & 0xff) << 8
+                        | (long) (headerBuffer[pointer++] & 0xff) << 16
+                        | (long) (headerBuffer[pointer++] & 0xff) << 24;
+        byteRate = (long) (headerBuffer[pointer++] & 0xff)
+                        | (long) (headerBuffer[pointer++] & 0xff) << 8
+                        | (long) (headerBuffer[pointer++] & 0xff) << 16
+                        | (long) (headerBuffer[pointer++] & 0xff) << 24;
+        blockAlign = (int) ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
+        bitsPerSample = (int) ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
+
+        temp  = { headerBuffer[pointer++],
+                        headerBuffer[pointer++], headerBuffer[pointer++],
+                        headerBuffer[pointer++] };
+
+        subChunk2Id =  string(temp);
+        subChunk2Size = (long) (headerBuffer[pointer++] & 0xff)
+                        | (long) (headerBuffer[pointer++] & 0xff) << 8
+                        | (long) (headerBuffer[pointer++] & 0xff) << 16
+                        | (long) (headerBuffer[pointer++] & 0xff) << 24;
+    }catch(exception& e)
     {
-        headerBuffer[pointer++],
-        headerBuffer[pointer++],
-        headerBuffer[pointer++],
-        headerBuffer[pointer++]
-    };
-    chunkId     = string(temp);
-    chunkSize   = (long) (headerBuffer[pointer++] & 0xff)
-            | (long) (headerBuffer[pointer++] & 0xff) << 8
-            | (long) (headerBuffer[pointer++] & 0xff) << 16
-            | (long) (headerBuffer[pointer++] & 0xff << 24);
-
-    temp = {headerBuffer[pointer++],
-        headerBuffer[pointer++], headerBuffer[pointer++],
-        headerBuffer[pointer++]};
-    format = string(temp);
-    
-    temp = {headerBuffer[pointer++],
-        headerBuffer[pointer++],
-        headerBuffer[pointer++],
-        headerBuffer[pointer++]};
-    
-    subChunk1Id = string(temp);
-    
-    subChunk1Size = (long) (headerBuffer[pointer++] & 0xff)
-                    | (long) (headerBuffer[pointer++] & 0xff) << 8
-                    | (long) (headerBuffer[pointer++] & 0xff) << 16
-                    | (long) (headerBuffer[pointer++] & 0xff) << 24;
-    audioFormat = (int) ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
-    channels = (int) ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
-    sampleRate = (long) (headerBuffer[pointer++] & 0xff)
-                    | (long) (headerBuffer[pointer++] & 0xff) << 8
-                    | (long) (headerBuffer[pointer++] & 0xff) << 16
-                    | (long) (headerBuffer[pointer++] & 0xff) << 24;
-    byteRate = (long) (headerBuffer[pointer++] & 0xff)
-                    | (long) (headerBuffer[pointer++] & 0xff) << 8
-                    | (long) (headerBuffer[pointer++] & 0xff) << 16
-                    | (long) (headerBuffer[pointer++] & 0xff) << 24;
-    blockAlign = (int) ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
-    bitsPerSample = (int) ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
-    
-    temp  = { headerBuffer[pointer++],
-                    headerBuffer[pointer++], headerBuffer[pointer++],
-                    headerBuffer[pointer++] };
-    
-    subChunk2Id =  string(temp);
-    subChunk2Size = (long) (headerBuffer[pointer++] & 0xff)
-                    | (long) (headerBuffer[pointer++] & 0xff) << 8
-                    | (long) (headerBuffer[pointer++] & 0xff) << 16
-                    | (long) (headerBuffer[pointer++] & 0xff) << 24;
-    
+        cout<<"Exceprion loading wave header"<<endl;
+    }
     if (bitsPerSample!=8 && bitsPerSample!=16)
     {
 			printf("WaveHeader: only supports bitsPerSample 8 or 16");			
