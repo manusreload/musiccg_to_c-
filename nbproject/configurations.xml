@@ -12,6 +12,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>FingerprintManager.cpp</itemPath>
+      <itemPath>FingerprintManager.h</itemPath>
       <itemPath>FingerprintProperties.cpp</itemPath>
       <itemPath>FingerprintProperties.h</itemPath>
       <itemPath>Wave.cpp</itemPath>
@@ -42,6 +44,10 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="FingerprintManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FingerprintManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="FingerprintProperties.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FingerprintProperties.h" ex="false" tool="3" flavor2="0">
@@ -77,6 +83,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="FingerprintManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FingerprintManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="FingerprintProperties.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FingerprintProperties.h" ex="false" tool="3" flavor2="0">

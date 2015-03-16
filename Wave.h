@@ -10,7 +10,7 @@
 
 #include "WaveHeader.h"
 
-
+typedef unsigned char   byte;
 using namespace std;
 
 class Wave 
@@ -18,14 +18,14 @@ class Wave
 private:
    static long          serialVersionUID = 1L;
    WaveHeader           waveHeader;
-   unsigned char        data[];	// little endian
-   unsigned char        fingerprint[];
+   byte                 data[];	// little endian
+   byte                 fingerprint[];
    int                  data_size;
 public:
     Wave();
     Wave(string name);
     Wave(iostream inputStream);
-    Wave(WaveHeader waveHeader, unsigned char data[]);
+    Wave(WaveHeader waveHeader, byte data[]);
     void                        initWaveWithInputStream(ifstream inputStream);
     void                        trim(int leftTrimNumberOfSample, int rightTrimNumberOfSample);
     void                        leftTrim(int numberOfSample);
@@ -36,14 +36,14 @@ public:
     WaveHeader                  getWaveHeader();
     Spectrogram                 getSpectrogram();
     Spectrogram                 getSpectrogram(int fftSampleSize, int overlapFactor);
-    unsigned char*              getBytes();
+    byte*              getBytes();
     int                         size();
     float                       length();
     string                      timestamp();
     short*                      getSampleAmplitudes(); 
     string                      toString();
     double*                     getNormalizedAmplitudes();
-    unsigned char*              getFingerprint();
+    byte*              getFingerprint();
     FingerprintSimilarity       getFingerprintSimilarity(Wave wave);
     
     

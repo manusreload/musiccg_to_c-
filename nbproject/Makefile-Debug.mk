@@ -21,8 +21,8 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-Linux-x86
-CND_DLIB_EXT=so
+CND_PLATFORM=MinGW-Windows
+CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/FingerprintManager.o \
 	${OBJECTDIR}/FingerprintProperties.o \
 	${OBJECTDIR}/Wave.o \
 	${OBJECTDIR}/WaveHeader.o \
@@ -59,11 +60,16 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__ ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/FingerprintManager.o: FingerprintManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FingerprintManager.o FingerprintManager.cpp
 
 ${OBJECTDIR}/FingerprintProperties.o: FingerprintProperties.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -91,7 +97,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__.exe
 
 # Subprojects
 .clean-subprojects:

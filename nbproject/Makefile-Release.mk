@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/FingerprintManager.o \
 	${OBJECTDIR}/FingerprintProperties.o \
 	${OBJECTDIR}/Wave.o \
 	${OBJECTDIR}/WaveHeader.o \
@@ -64,6 +65,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__ ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/FingerprintManager.o: FingerprintManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FingerprintManager.o FingerprintManager.cpp
 
 ${OBJECTDIR}/FingerprintProperties.o: FingerprintProperties.cpp 
 	${MKDIR} -p ${OBJECTDIR}

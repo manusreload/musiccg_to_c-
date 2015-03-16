@@ -7,6 +7,8 @@
 
 #ifndef FINGERPRINTPROPERTIES_H
 #define	FINGERPRINTPROPERTIES_H
+typedef byte       byte;
+
 using namespace std;
 
 class FingerprintProperties 

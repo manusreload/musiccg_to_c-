@@ -48,13 +48,13 @@ WaveHeader::WaveHeader(iostream inputStream)
 }
 bool WaveHeader::loadHeader(iostream inputStream)
 {
-    unsigned char headerBuffer[] = char[HEADER_BYTE_LENGTH];
+    byte headerBuffer[] = char[HEADER_BYTE_LENGTH];
     try{
         
         int pointer                  = 0;
 
         inputStream.read(headerBuffer, HEADER_BYTE_LENGTH);
-        unsigned char temp[];
+        byte temp[];
         temp = 
         {
             headerBuffer[pointer++],

@@ -13,7 +13,7 @@
 Wave::Wave() 
 {
     waveHeader  = new WaveHeader();
-    data        = unsigned char[0];
+    data        = byte[0];
     data_size   = 0;
 }
 /**
@@ -47,7 +47,7 @@ Wave::Wave(ifstream inputStream)
  * @param byte[]
  *            data
  */
-Wave::Wave(WaveHeader waveHeader, unsigned char data[]) 
+Wave::Wave(WaveHeader waveHeader, byte data[]) 
 {
         waveHeader = waveHeader;
         data = data;
@@ -67,11 +67,11 @@ void Wave::initWaveWithInputStream(ifstream inputStream)
         try{
                 inputStream.seekg(0,ifstream::end);
                 data_size = inputStream.tellg();
-                data = unsigned char[data_size];
+                data = byte[data_size];
                 inputStream.read(data,data_size);
             }catch(exception& e)
             {
-                cout<<"Exception reading file"<<endl;
+                cout<<"Exception opening file"<<endl;
             }
            
             // end load data
@@ -105,7 +105,7 @@ void Wave::trim(int leftTrimNumberOfSample, int rightTrimNumberOfSample) {
                 waveHeader.setChunkSize(chunkSize);
                 waveHeader.setSubChunk2Size(subChunk2Size);
 
-                unsigned char trimmedData[] = unsigned char[(int) subChunk2Size];
+                byte trimmedData[] = byte[(int) subChunk2Size];
                 //this is way faster than doing it in a for loop
                 memcpy(trimmedData,data,subChunk2Size);
                 data = trimmedData;
@@ -216,7 +216,7 @@ Spectrogram Wave::getSpectrogram(int fftSampleSize, int overlapFactor) {
  * 
  * @return wave data
  */
-unsigned char* Wave::getBytes() 
+byte* Wave::getBytes() 
 {
         return data;
 }
@@ -306,7 +306,7 @@ double* Wave::getNormalizedAmplitudes()
         return amplitudes.getNormalizedAmplitudes();
 }
 
-unsigned char* Wave::getFingerprint()
+byte* Wave::getFingerprint()
 {		
         if (fingerprint == NULL)
         {
