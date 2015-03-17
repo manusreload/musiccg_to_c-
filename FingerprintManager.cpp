@@ -33,7 +33,7 @@ byte* FingerprintManager::extractFingerprint(Wave wave)
     // end resample to target rate
 
     // get spectrogram's data
-    Spectrogram spectrogram = resampledWave.getSpectrogram(sampleSizePerFrame, overlapFactor);
+    Spectogram spectrogram = resampledWave.getSpectrogram(sampleSizePerFrame, overlapFactor);
     vector<vector<double> > spectorgramData = spectrogram.getNormalizedSpectrogramData();
 
     vector<list<int> > pointsLists = getRobustPointList(spectorgramData);
@@ -81,7 +81,7 @@ byte* FingerprintManager::extractFingerprint(Wave wave)
                 byteList.push_back((byte) y);
 
                 // next 4 bytes is intensity
-                int intensity = (int) (spectorgramData[x][y] * MAX_VALUE); // spectorgramData is ranged from 0~1
+                int intensity = (int) (spectorgramData[x][y] * INT_MAX_VALUE); // spectorgramData is ranged from 0~1
                 byteList.push_back((byte) (intensity >> 24));
                 byteList.push_back((byte) (intensity >> 16));
                 byteList.push_back((byte) (intensity >> 8));
@@ -190,8 +190,8 @@ vector<list<int> > FingerprintManager::getRobustPointList(vector<vector<double >
                     }
             }
             // get the most robust point in each filter bank
-            TopManyPointsProcessorChain processorChain  = TopManyPointsProcessorChain(bankIntensities,1);
-            double** processedIntensities               = processorChain.getIntensities();
+            TopManyPointsProcessorChain processorChain          = TopManyPointsProcessorChain(bankIntensities,1);
+            vector<vector<double> > processedIntensities        = processorChain.getIntensities();
 
             for (int i=0; i<numX; i++){
                     for (int j=0; j<bandwidthPerBank; j++){

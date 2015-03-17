@@ -16,10 +16,18 @@
       <itemPath>FingerprintManager.h</itemPath>
       <itemPath>FingerprintProperties.cpp</itemPath>
       <itemPath>FingerprintProperties.h</itemPath>
+      <itemPath>Resampler.cpp</itemPath>
+      <itemPath>Resampler.h</itemPath>
+      <itemPath>Spectogram.cpp</itemPath>
+      <itemPath>Spectogram.h</itemPath>
       <itemPath>Wave.cpp</itemPath>
       <itemPath>Wave.h</itemPath>
       <itemPath>WaveHeader.cpp</itemPath>
       <itemPath>WaveHeader.h</itemPath>
+      <itemPath>WindowFunction.cpp</itemPath>
+      <itemPath>WindowFunction.h</itemPath>
+      <itemPath>auxiliar.cpp</itemPath>
+      <itemPath>auxiliar.h</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -52,6 +60,14 @@
       </item>
       <item path="FingerprintProperties.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Resampler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Resampler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Spectogram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Spectogram.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Wave.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Wave.h" ex="false" tool="3" flavor2="0">
@@ -59,6 +75,14 @@
       <item path="WaveHeader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="WaveHeader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WindowFunction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WindowFunction.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="auxiliar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="auxiliar.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -91,6 +115,14 @@
       </item>
       <item path="FingerprintProperties.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Resampler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Resampler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Spectogram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Spectogram.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Wave.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Wave.h" ex="false" tool="3" flavor2="0">
@@ -98,6 +130,14 @@
       <item path="WaveHeader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="WaveHeader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WindowFunction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WindowFunction.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="auxiliar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="auxiliar.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

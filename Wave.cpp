@@ -241,7 +241,6 @@ float Wave::length()
         float second = (float) waveHeader.getSubChunk2Size() / waveHeader.getByteRate();
         return second;
 }
-
 /**
  * Timestamp of the wave length
  * 
@@ -249,10 +248,10 @@ float Wave::length()
  */
 string Wave::timestamp() 
 {
-        float totalSeconds = this.length();
-        float second = totalSeconds % 60;
-        int minute = (int) totalSeconds / 60 % 60;
-        int hour = (int) (totalSeconds / 3600);
+        float totalSeconds      = this.length();
+        float second            = totalSeconds % 60;
+        int minute              = (int) totalSeconds / 60 % 60;
+        int hour                = (int) (totalSeconds / 3600);
 
         string sb = string();
         if (hour > 0) 
@@ -275,9 +274,9 @@ string Wave::timestamp()
  */
 short* Wave::getSampleAmplitudes()
 {
-        int bytePerSample = waveHeader.getBitsPerSample() / 8;
-        int numSamples = data_size / bytePerSample;
-        short amplitudes[] = short[numSamples];
+        int bytePerSample       = waveHeader.getBitsPerSample() / 8;
+        int numSamples          = data_size / bytePerSample;
+        short amplitudes[]      = short[numSamples];
 
         int pointer = 0;
         for (int i = 0; i < numSamples; i++) {
@@ -310,15 +309,15 @@ byte* Wave::getFingerprint()
 {		
         if (fingerprint == NULL)
         {
-                FingerprintManager fingerprintManager=new FingerprintManager();
-                fingerprint=fingerprintManager.extractFingerprint(this);
+                FingerprintManager fingerprintManager = FingerprintManager();
+                fingerprint = fingerprintManager.extractFingerprint(this);
         }
         return fingerprint;
 }
 
 FingerprintSimilarity Wave::getFingerprintSimilarity(Wave wave)
 {		
-        FingerprintSimilarityComputer fingerprintSimilarityComputer=new FingerprintSimilarityComputer(this.getFingerprint(),wave.getFingerprint());
+        FingerprintSimilarityComputer fingerprintSimilarityComputer = FingerprintSimilarityComputer(this.getFingerprint(),wave.getFingerprint());
         return fingerprintSimilarityComputer.getFingerprintsSimilarity();
 }
 

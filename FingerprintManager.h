@@ -14,6 +14,8 @@ typedef unsigned char    byte;
 #include <list>
 #include <limits>
 #include <fstream>
+#include "Spectogram.h"
+#include "auxiliar.h"
 #include <FingerprintProperties.h>
 using namespace std;
 

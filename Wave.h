@@ -36,14 +36,14 @@ public:
     WaveHeader                  getWaveHeader();
     Spectrogram                 getSpectrogram();
     Spectrogram                 getSpectrogram(int fftSampleSize, int overlapFactor);
-    byte*              getBytes();
+    byte*                       getBytes();
     int                         size();
     float                       length();
     string                      timestamp();
     short*                      getSampleAmplitudes(); 
     string                      toString();
     double*                     getNormalizedAmplitudes();
-    byte*              getFingerprint();
+    byte*                       getFingerprint();
     FingerprintSimilarity       getFingerprintSimilarity(Wave wave);
     
     

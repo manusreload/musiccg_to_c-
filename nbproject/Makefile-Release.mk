@@ -37,8 +37,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/FingerprintManager.o \
 	${OBJECTDIR}/FingerprintProperties.o \
+	${OBJECTDIR}/Resampler.o \
+	${OBJECTDIR}/Spectogram.o \
 	${OBJECTDIR}/Wave.o \
 	${OBJECTDIR}/WaveHeader.o \
+	${OBJECTDIR}/WindowFunction.o \
+	${OBJECTDIR}/auxiliar.o \
 	${OBJECTDIR}/main.o
 
 
@@ -76,6 +80,16 @@ ${OBJECTDIR}/FingerprintProperties.o: FingerprintProperties.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FingerprintProperties.o FingerprintProperties.cpp
 
+${OBJECTDIR}/Resampler.o: Resampler.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Resampler.o Resampler.cpp
+
+${OBJECTDIR}/Spectogram.o: Spectogram.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Spectogram.o Spectogram.cpp
+
 ${OBJECTDIR}/Wave.o: Wave.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -85,6 +99,16 @@ ${OBJECTDIR}/WaveHeader.o: WaveHeader.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WaveHeader.o WaveHeader.cpp
+
+${OBJECTDIR}/WindowFunction.o: WindowFunction.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WindowFunction.o WindowFunction.cpp
+
+${OBJECTDIR}/auxiliar.o: auxiliar.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/auxiliar.o auxiliar.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
