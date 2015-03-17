@@ -35,11 +35,14 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/ArrayRankDouble.o \
 	${OBJECTDIR}/FFT.o \
 	${OBJECTDIR}/FingerprintManager.o \
 	${OBJECTDIR}/FingerprintProperties.o \
+	${OBJECTDIR}/IntensityProcessor.o \
 	${OBJECTDIR}/Resampler.o \
 	${OBJECTDIR}/Spectogram.o \
+	${OBJECTDIR}/TopManyPointsProcessorChain.o \
 	${OBJECTDIR}/Wave.o \
 	${OBJECTDIR}/WaveHeader.o \
 	${OBJECTDIR}/WindowFunction.o \
@@ -71,6 +74,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fingerprintc__ ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/ArrayRankDouble.o: ArrayRankDouble.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ArrayRankDouble.o ArrayRankDouble.cpp
+
 ${OBJECTDIR}/FFT.o: FFT.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -86,6 +94,11 @@ ${OBJECTDIR}/FingerprintProperties.o: FingerprintProperties.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FingerprintProperties.o FingerprintProperties.cpp
 
+${OBJECTDIR}/IntensityProcessor.o: IntensityProcessor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IntensityProcessor.o IntensityProcessor.cpp
+
 ${OBJECTDIR}/Resampler.o: Resampler.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -95,6 +108,11 @@ ${OBJECTDIR}/Spectogram.o: Spectogram.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Spectogram.o Spectogram.cpp
+
+${OBJECTDIR}/TopManyPointsProcessorChain.o: TopManyPointsProcessorChain.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TopManyPointsProcessorChain.o TopManyPointsProcessorChain.cpp
 
 ${OBJECTDIR}/Wave.o: Wave.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -11,7 +11,7 @@
 #include <vector>
 
 using namespace std;
-class Spectogram 
+class Spectogram : public Object
 {
 public:  
        

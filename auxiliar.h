@@ -13,10 +13,10 @@ typedef unsigned char byte;
 #include <string>
 using namespace std;
 
-double DOUBLE_MIN_VALUE;std::numeric_limits<double>::min();
-double DOUBLE_MAX_VALUE;std::numeric_limits<double>::max();
-double INT_MIN_VALUE;std::numeric_limits<int>::min();
-double INT_MAX_VALUE;std::numeric_limits<int>::max();
+double DOUBLE_MIN_VALUE         = numeric_limits<double>::min();
+double DOUBLE_MAX_VALUE         = numeric_limits<double>::max();
+double INT_MIN_VALUE            = numeric_limits<int>::min();
+double INT_MAX_VALUE            = numeric_limits<int>::max();
 string toUpperCase(const string& _cadena);
 
 

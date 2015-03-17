@@ -9,6 +9,7 @@
 
 Spectogram::Spectogram() 
 {
+    Object* punt = Spectrogram();
 }
 
 int bitcount(int i)
@@ -116,9 +117,10 @@ void Spectogram::buildSpectrogram()
 
         absoluteSpectrogram=new double[numFrames][];
         // for each frame in signals, do fft on it
-        FastFourierTransform fft = FastFourierTransform();
-        for (int i=0; i<numFrames; i++){			
-                absoluteSpectrogram[i] = fft.getMagnitudes(signals[i]);
+        
+        for (int i=0; i<numFrames; i++)
+        {			
+                absoluteSpectrogram[i] = getFFTMagnitudes(signals[i]);
         }
 
         if (absoluteSpectrogram.size()>0){
