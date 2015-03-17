@@ -15,7 +15,6 @@ class Spectogram
 {
 public:  
        
-        
         static int SPECTROGRAM_DEFAULT_FFT_SAMPLE_SIZE = 1024;
         static int SPECTROGRAM_DEFAULT_OVERLAP_FACTOR = 0;	// 0 for no overlapping
 	
@@ -64,6 +63,15 @@ public:
      * @return	absolute spectrogram
      */
     vector<vector<double> > getAbsoluteSpectrogramData();
+    /**
+     * Get the frequency intensities
+     * 
+     * @param amplitudes
+     *            amplitudes of the signal
+     * @return intensities of each frequency unit: mag[frequency_unit]=intensity
+     */
+    vector<double> getFFTMagnitudes(vector<double> amplitudes) ;
+    
     int getNumFrames();
     int getFramesPerSecond();
     int getNumFrequencyUnit();

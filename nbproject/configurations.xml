@@ -12,6 +12,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>FFT.cpp</itemPath>
+      <itemPath>FFT.h</itemPath>
       <itemPath>FingerprintManager.cpp</itemPath>
       <itemPath>FingerprintManager.h</itemPath>
       <itemPath>FingerprintProperties.cpp</itemPath>
@@ -52,6 +54,10 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="FFT.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FFT.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="FingerprintManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FingerprintManager.h" ex="false" tool="3" flavor2="0">
@@ -107,6 +113,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="FFT.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FFT.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="FingerprintManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FingerprintManager.h" ex="false" tool="3" flavor2="0">
